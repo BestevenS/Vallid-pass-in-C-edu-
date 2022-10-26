@@ -207,7 +207,6 @@ int is_valid_password(char pwd[]){
 
             if(j == strlen(pwd) - 1 && i == strlen(pwd) - 1){
 
-                printf("i: %d, j: %d, strength: %d\n", i, j, strength);
                 strength += 5;
 
             }
@@ -222,7 +221,7 @@ int is_valid_password(char pwd[]){
     // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
     
     for(int i = 0; i < strlen(pwd); i++){
-        
+
         // Αν ο χαρακτήρας θέσης i είναι είναι ίσος με τους δύο επόμενους ή
         // μόνο με τον επόμενο χαρακτήρα
 
