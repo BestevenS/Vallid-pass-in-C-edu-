@@ -185,8 +185,6 @@ int is_valid_password(char pwd[]){
     // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
 
     for(int i = 0; i < strlen(pwd); i++){
-        
-        printf("\n\nstrength: %d\n\n", strength);
 
         // for ανατρέχει σε ολόκληρο τον πίνακα
 
@@ -224,10 +222,7 @@ int is_valid_password(char pwd[]){
     // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
     
     for(int i = 0; i < strlen(pwd); i++){
-
-
-
-        printf("\n\nstrength: %d\n\n", strength);
+        
         // Αν ο χαρακτήρας θέσης i είναι είναι ίσος με τους δύο επόμενους ή
         // μόνο με τον επόμενο χαρακτήρα
 
