@@ -12,8 +12,9 @@ int main() {
         printf("\n\nEnter password: ");
         scanf("%s", pwd);
 
-        if(strength = is_valid_password(pwd))
+        if(strength = is_valid_password(pwd)){
             break;
+        }
 
         if(pwd[0] == 0x0A){
             printf("fdasf");
@@ -39,7 +40,7 @@ int is_valid_password(char pwd[]){
     if(strlen(pwd) < 8){
 
         printf("Your password must contain be at least 8 characters");
-        return 0;
+        return strength;
 
     }
 
@@ -81,41 +82,59 @@ int is_valid_password(char pwd[]){
 
         for(int j = 0; j < 26; j++){
             
+
+            // Αν υπάρχουν κεφαλαία γράμματα
+            // Για να ξέρω αν υπάρχει κάποιος κεφαλαίος χαρακτήρας & να μετράω πόσοι υπάρχουν
+
             if(pwd[i] == j + 65){
             
-                upperC == 1;
+                upperC = 1;
                 upperCaseCounter++;
             
             }
 
+
+            // Αν υπάρχουν πεζά γράμματα
+            // Για να ξέρω αν υπάρχει κάποιος πεζός χαρακτήρας & να μετράω πόσοι υπάρχουν
+
             if(pwd[i] == j + 97){
             
-                lowerC == 1;
+                lowerC = 1;
                 lowerCaseCounter++;
             
             }
 
         }
 
+        // Αν ο χαρακτήρας ειναι αριθμός
+        // Για να ξέρω αν υπάρχει κάποιος αριθμός & να μετράω πόσοι υπάρχουν
+
         for(int j = 0; j < 10; j++){
             
             if(pwd[i] == j + 48){
             
-                digitC == 1;
+                digitC = 1;
                 digitCounter++;
 
             }
 
         }
 
+
+        // Αν ο χαρακτήρας είναι οποιοδήποτε από τους παρακάτω 
+        // Για να ξέρω αν υπάρχει κάποιος ειδικός χαρακτήρας & να μετράω πόσοι υπάρχουν
+
         if(pwd[i] == '!' || pwd[i] == '@' || pwd[i] == '#' || pwd[i] == '$' || pwd[i] == '&' ||  pwd[i] == '_'){
         
-            specialC == 1;
+            specialC = 1;
             specialCharCounter++;
         
         }
 
     }
+
+
+    // Αν υπάρχει χαρακτήρας που δεν ανήκει σε καμία κατηγορία
 
     if((upperCaseCounter + lowerCaseCounter + digitCounter + specialCharCounter) < strlen(pwd)){
 
@@ -123,6 +142,9 @@ int is_valid_password(char pwd[]){
         return strength;
 
     }
+
+
+    // Αν υπάρχουν τουλάχιστον 1 από τουλάχιστον 3/4 κατηγορίες χαρακτήρων
 
     if((upperC + lowerC + digitC + specialC) < 3){
         
@@ -132,6 +154,9 @@ int is_valid_password(char pwd[]){
     }
 
     //2.
+    
+
+    // Αν είναι μεγέθους 8 χαρακτήρων
 
     if(strlen(pwd) == 8){
         
@@ -142,25 +167,48 @@ int is_valid_password(char pwd[]){
 
     //3.
 
+
+    // for ανατρλέχει σε ολόκληρη τη συμβολοσειρά
+
     for(int i = 0; i < strlen(pwd); i++){
 
+        
+        // Για κάθε επιπλέον τέσσερις χαρακτήρες, η ισχύς του συνθηματικού αυξάνεται κατά 2
+
         if(i >= 8 && (i + 1) % 4 == 0){
-         
+
             strength += 2;
-
+            
         }
+    }
+    printf("\n\n%d\n\n", strength);
 
-        //4.
+    //4.
+
+    // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
+
+    for(int i = 0; i < strlen(pwd); i++){
+
+        // for ανατρέχει σε ολόκληρο τον πίνακα
 
         for(int j = 0; j < strlen(pwd); j++){
             
+
+            // Αν i == j να μην ελέγξει γιατί θα ειναι το ίδιο στοιχείο
+            // Αν οι χαρακτήρες είναι ίδιοι σταμάτα την επανάληψη
+
             if(i != j && pwd[i] == pwd[j]){
 
                 break;
 
             }
 
-            else
+
+            // Αν είμαστε την τελευταία επανάληψη και δεν έχει τρέξει η εντολή break σημαίνει
+            // Είμαστε βέβαιοι πως ο χαρακτήρας δεν έχει ξαναγραφεί σε άλλο σημείο του πίνακα
+            // Μπορούμε να του δώσουμε + 5 στην ισχύς του συνθηματικού
+
+            if(j == strlen(pwd) - 1)
             
                 strength += 5;
 
@@ -169,14 +217,26 @@ int is_valid_password(char pwd[]){
     }
 
     //5.
+
+
+    // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
     
     for(int i = 0; i < strlen(pwd); i++){
 
+
+        // Αν ο χαρακτήρας θέσης i είναι είναι ίσος με τους δύο επόμενους ή
+        // μόνο με τον επόμενο χαρακτήρα
+
+        // ((pwd[i] == pwd[i+1]) && (pwd[i] == pwd[i+2])) || (pwd[i] == pwd[i+1])
+        // => Απλοποίηση σε (pwd[i] == pwd[i+1])
         
-        if((pwd[i] == pwd[i+1] == pwd[i+2]) || (pwd[i] == pwd[i+1])){
+        if(pwd[i] == pwd[i+1]){
 
             strength -= 2;
-            i += 2;
+            i += 2;         
+            // Μετακίνηση του i κατά 2 θέσεις, επειδή ξερω πως ο 
+            // επόμενος χαρακτήρας είναι ίδιος δεν το συγκρινω με 
+            // τον επόμενο του, γιατί θα το αποτέλεσμα θα είναι ίδιο
 
         }
 
@@ -186,7 +246,7 @@ int is_valid_password(char pwd[]){
 
     if(upperC + lowerC + digitC + specialC == 4){
 
-        strength *= 2;
+        strength = strength * 2;
 
     }
         
