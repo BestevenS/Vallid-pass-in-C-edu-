@@ -43,26 +43,37 @@ int is_valid_password(char pwd[]){
 
     //b
 
+    // Είναι ίσα με 0 αν δεν υπάρχει καθόλου η εκάστωτε κατηγορία χαρακτήρα
+    // Είναι ίσα με 1 αν υπάρχει έστω και ένας από τους χαρακτήρες της εκάστωτε κατηγορίας
+
     int upperC = 0;
     int lowerC = 0;
     int digitC = 0;
     int specialC = 0;
+
+    // Μετράει πόσοι από κάθε κατηγορία χαρακτήρων υπάρχουν
 
     int upperCaseCounter = 0;
     int lowerCaseCounter = 0;
     int digitCounter = 0;
     int specialCharCounter = 0;
 
-    for(int i = 0; i < strlen(pwd) - 1; i++){
+    // for που ανατρέχει σε ολόκληρο τον πίνακα χαρακτήρων(συμβολοσειρά)
 
-        printf("pwd[i] == %c, pwd[i+1] == %c, pwd[i+2] == %c, pwd[i+3] == %c \n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3]);
-        printf("\n%c == %c = %d \n", pwd[i], pwd[i+1], pwd[i] == pwd[i+1]);
+    for(int i = 0; i < strlen(pwd) - 3; i++){
 
-        if(pwd[i] == pwd[i+1] == pwd[i+2] == pwd[i+3]){
+        printf("%i\n", pwd[i] == pwd[i + 1]);
 
-            printf("\n%d\n", i);
+        // printf("pwd[i] == %c, pwd[i+1] == %c, pwd[i+2] == %c, pwd[i+3] == %c \n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3]);
+        // printf("\n%c == %c = %d \n", pwd[i], pwd[i+1], pwd[i] == pwd[i+1]);
 
-            printf("\n%c%c%c%c%c\n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3], pwd[i+4]);
+        // Αν υπάρχουν περισσότερα από 3 ίδια στοιχεία στην σειρά
+
+        if(pwd[i] == pwd[i + 1] && pwd[i] == pwd[i + 2] && pwd[i] == pwd[i + 3]){
+
+            // printf("\n%d\n", i);
+
+            // printf("\n%c%c%c%c%c\n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3], pwd[i+4]);
 
             printf("Your password is not allowed to contain more than 3 similar characters in a row");
             return strength;
