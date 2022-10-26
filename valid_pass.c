@@ -158,10 +158,9 @@ int is_valid_password(char pwd[]){
 
     // Αν είναι μεγέθους 8 χαρακτήρων
 
-    if(strlen(pwd) == 8){
+    if(strlen(pwd) >= 8){
         
-        strength = 10;
-        return strength;
+        strength += 10;
     
     }
 
@@ -172,7 +171,6 @@ int is_valid_password(char pwd[]){
 
     for(int i = 0; i < strlen(pwd); i++){
 
-        
         // Για κάθε επιπλέον τέσσερις χαρακτήρες, η ισχύς του συνθηματικού αυξάνεται κατά 2
 
         if(i >= 8 && (i + 1) % 4 == 0){
@@ -181,13 +179,14 @@ int is_valid_password(char pwd[]){
             
         }
     }
-    printf("\n\n%d\n\n", strength);
 
     //4.
 
     // Ανατρέχει σε ολόκληρη τη συμβολοσειρά
 
     for(int i = 0; i < strlen(pwd); i++){
+        
+        printf("\n\nstrength: %d\n\n", strength);
 
         // for ανατρέχει σε ολόκληρο τον πίνακα
 
@@ -196,7 +195,7 @@ int is_valid_password(char pwd[]){
 
             // Αν i == j να μην ελέγξει γιατί θα ειναι το ίδιο στοιχείο
             // Αν οι χαρακτήρες είναι ίδιοι σταμάτα την επανάληψη
-
+            
             if(i != j && pwd[i] == pwd[j]){
 
                 break;
@@ -208,9 +207,12 @@ int is_valid_password(char pwd[]){
             // Είμαστε βέβαιοι πως ο χαρακτήρας δεν έχει ξαναγραφεί σε άλλο σημείο του πίνακα
             // Μπορούμε να του δώσουμε + 5 στην ισχύς του συνθηματικού
 
-            if(j == strlen(pwd) - 1)
-            
+            if(j == strlen(pwd) - 1 && i == strlen(pwd) - 1){
+
+                printf("i: %d, j: %d, strength: %d\n", i, j, strength);
                 strength += 5;
+
+            }
 
         }
 
@@ -224,6 +226,8 @@ int is_valid_password(char pwd[]){
     for(int i = 0; i < strlen(pwd); i++){
 
 
+
+        printf("\n\nstrength: %d\n\n", strength);
         // Αν ο χαρακτήρας θέσης i είναι είναι ίσος με τους δύο επόμενους ή
         // μόνο με τον επόμενο χαρακτήρα
 
@@ -233,6 +237,7 @@ int is_valid_password(char pwd[]){
         if(pwd[i] == pwd[i+1]){
 
             strength -= 2;
+            
             i += 2;         
             // Μετακίνηση του i κατά 2 θέσεις, επειδή ξερω πως ο 
             // επόμενος χαρακτήρας είναι ίδιος δεν το συγκρινω με 
@@ -246,7 +251,7 @@ int is_valid_password(char pwd[]){
 
     if(upperC + lowerC + digitC + specialC == 4){
 
-        strength = strength * 2;
+        strength *= 2;
 
     }
         
