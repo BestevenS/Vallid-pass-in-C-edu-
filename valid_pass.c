@@ -243,6 +243,9 @@ int is_valid_password(char pwd[]){
 
     //6.
 
+
+    // Αν έχει τουλάχιστον 1 χαρακτήρα και από τις 4 κατηγοριες
+
     if(upperC + lowerC + digitC + specialC == 4){
 
         strength *= 2;
