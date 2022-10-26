@@ -34,6 +34,8 @@ int is_valid_password(char pwd[]){
 
     //a
 
+    // Αν η συμβολοσειρά είναι μικρότερη απο 8 χαρακτήρες
+
     if(strlen(pwd) < 8){
 
         printf("Your password must contain be at least 8 characters");
@@ -58,22 +60,13 @@ int is_valid_password(char pwd[]){
     int digitCounter = 0;
     int specialCharCounter = 0;
 
-    // for που ανατρέχει σε ολόκληρο τον πίνακα χαρακτήρων(συμβολοσειρά)
+    // for που ανατρέχει σε ολόκληρο τον πίνακα - 3 χαρακτήρων(συμβολοσειρά)
 
     for(int i = 0; i < strlen(pwd) - 3; i++){
-
-        printf("%i\n", pwd[i] == pwd[i + 1]);
-
-        // printf("pwd[i] == %c, pwd[i+1] == %c, pwd[i+2] == %c, pwd[i+3] == %c \n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3]);
-        // printf("\n%c == %c = %d \n", pwd[i], pwd[i+1], pwd[i] == pwd[i+1]);
 
         // Αν υπάρχουν περισσότερα από 3 ίδια στοιχεία στην σειρά
 
         if(pwd[i] == pwd[i + 1] && pwd[i] == pwd[i + 2] && pwd[i] == pwd[i + 3]){
-
-            // printf("\n%d\n", i);
-
-            // printf("\n%c%c%c%c%c\n", pwd[i], pwd[i+1], pwd[i+2], pwd[i+3], pwd[i+4]);
 
             printf("Your password is not allowed to contain more than 3 similar characters in a row");
             return strength;
