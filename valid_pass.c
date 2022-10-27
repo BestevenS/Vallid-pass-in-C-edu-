@@ -23,7 +23,7 @@ int main() {
 
     }
 
-    printf("Your password is valid and has a strength of %d", strength);
+    printf("Your password is valid and has a strength of %d\n", strength);
 
     return 0;
 
