@@ -10,15 +10,16 @@ int main() {
     while(1){
 
         printf("\n\nEnter password: ");
-        scanf("%s", pwd);
+        fgets(pwd, sizeof(pwd),stdin);
+        sscanf(pwd, "%s", pwd);
+
+        if(pwd[0] == 0x0A){
+            printf("Exiting...\n");
+            return 1;
+        }
 
         if(strength = is_valid_password(pwd)){
             break;
-        }
-
-        if(pwd[0] == 0x0A){
-            printf("fdasf");
-            return 1;
         }
 
     }
