@@ -13,6 +13,7 @@ int main() {
         fgets(pwd, sizeof(pwd),stdin);
         sscanf(pwd, "%s", pwd);
 
+        // check if password is void (just enter)
         if(pwd[0] == 0x0A){
             printf("Exiting...\n");
             return 1;
